@@ -1,7 +1,7 @@
 # 🚀 The Ultimate Nextjs Starter Template
 
 🔋 Battery included™️.
-This an opinionated starter template for a production grade NextJS project
+This an opinionated starter template for a production grade NextJS project.
 I've adopted industries best practices into this project from my professional experience in big tech, startups and YC companies.
 
 ### 💡 Main features
