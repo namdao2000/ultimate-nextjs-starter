@@ -10,18 +10,19 @@ I've adopted industries best practices into this template from my professional e
 - [x] PostgreSQL and Prisma ORM.
 - [x] Protected vs public API routes.
 - [x] API schema validation using JOI validator.
-- [ ] Data fetching using SWR 
+- [ ] Data fetching using SWR.
 
 ### 🔎 Observation
 
-- [x] Logging using Pino
-- [x] Error handling
-- [ ] Analytics
+- [x] Logging using Pino.
+- [ ] Integration with Datadog for monitoring the logs.
+- [x] Error handling.
+- [ ] Analytics.
 
 ### 🧑‍💻 Developer Experience
 
 - [x] Typescript
-- [x] Using Uncle Bob's Clean Architecture for API codebase.
+- [x] Using Uncle Bob's Clean Architecture for backend codebase.
 - [x] Create React components faster with component library using Chakra UI.
 - [ ] Docker compose for running the app locally.
 - [x] Eslint and Prettier for code formatting.
@@ -50,7 +51,7 @@ SECRET= A secret string used to sign the JWT token for NextAuth
 Just run `npm run dev`
 
 # 📚 Best Practices
-Below are some best practices for writing code in this project. 
+Below are some of the best practices used when creating this project. 
 I've included this section to explain the reasoning behind my decisions.
 
 ## 🗂 Architecture
