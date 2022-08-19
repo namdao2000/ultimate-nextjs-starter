@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
 
-// Authentication Middleware
+// Authentication Middleware to get User details
 export const getUser = async (
   req: NextApiRequest,
   res: NextApiResponse
