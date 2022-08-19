@@ -1,0 +1,51 @@
+{
+  "name": "ultimate-nextjs-starter",
+  "version": "1.0.0",
+  "author": "Nam Dao",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --ignore-path .gitignore --write \"pages/**/*.{ts,tsx}\"",
+    "prisma:generate": "prisma generate",
+    "prisma:format": "prisma format",
+    "prisma:push": "prisma db push",
+    "vercel-build": "prisma generate && next build"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=10",
+      "prettier -w"
+    ],
+    "src/**/*.{json,css,md}": [
+      "prettier -w"
+    ]
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.2.4",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@next-auth/prisma-adapter": "^1.0.4",
+    "@prisma/client": "^4.1.1",
+    "framer-motion": "^6.5.1",
+    "joi": "^17.6.0",
+    "next": "12.2.4",
+    "next-auth": "^4.10.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.6.4",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.4",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prisma": "^4.2.1",
+    "typescript": "^4.7.4"
+  }
+}
