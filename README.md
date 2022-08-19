@@ -2,7 +2,7 @@
 
 🔋 Battery included™️.
 This an opinionated starter template for a production grade NextJS project.
-I've adopted industries best practices into this project from my professional experience in big tech, startups and YC companies.
+I've adopted industries best practices into this template from my professional experience in big tech, startups and YC companies.
 
 ### 💡 Main features
 
@@ -87,3 +87,6 @@ export default async function handle(
   }
 }
 ```
+
+# ⭐️ Contribution
+Always looking for feedbacks and contributors! Please open an issue or a PR if you have any suggestions 😁
