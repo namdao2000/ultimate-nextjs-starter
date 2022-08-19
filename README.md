@@ -54,11 +54,23 @@ Below are some best practices for writing code in this project.
 I've included this section to explain the reasoning behind my decisions.
 
 ## 🗂 Architecture
-This code base uses Uncle Bob's Clean architecture for the backend, introducing separation of concern.
-It is seperated into API layer, Service layer and Repository layer.
+The structure of the backend code has been inspired by [Uncle Bob's Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+But what is Clean Architecture?
+
+![Clean Architecture Diagram](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+
+> The overriding rule that makes this architecture work is The Dependency Rule. 
+> This rule says that source code dependencies can only point inwards. 
+> Nothing in an inner circle can know anything at all about something in an outer circle.
+
+Following this patter, the code base is organised into the following layers:
+
+- API Layer
+- Service Layer
+- Repository Layer
 
 ```bash
-TODO
+ TODO
 ```
 
 ## ⚙️ API Schema Validation
