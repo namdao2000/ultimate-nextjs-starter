@@ -1,10 +1,10 @@
-# The Ultimate Nextjs Starter
+# 🚀 The Ultimate Nextjs Starter Template
 
-Battery included™️.
+🔋 Battery included™️.
 This an opinionated starter template for a production grade NextJS project
 I've adopted industries best practices into this project from my professional experience in big tech, startups and YC companies.
 
-### Main features
+### 💡 Main features
 
 - [x] Authentication using NextAuth with Google Login.
 - [x] PostgreSQL and Prisma ORM.
@@ -12,13 +12,13 @@ I've adopted industries best practices into this project from my professional ex
 - [x] API schema validation using JOI validator.
 - [ ] Data fetching using SWR 
 
-### Observation
+### 🔎 Observation
 
 - [x] Logging using Pino
 - [x] Error handling
 - [ ] Analytics
 
-### Developer Experience
+### 🧑‍💻 Developer Experience
 
 - [x] Typescript
 - [x] Using Uncle Bob's Clean Architecture for API codebase.
@@ -30,7 +30,7 @@ I've adopted industries best practices into this project from my professional ex
 - [ ] Run in development mode vs production mode.
 - [ ] Renovate for keeping the dependencies up to date.
 
-## Getting started
+## 👉 Getting started
 
 Make sure you have the following `.env` file present
 
@@ -46,24 +46,28 @@ SECRET= A secret string used to sign the JWT token for NextAuth
 2. Start the postgreSQL via docker compose
 3. Run `npx prisma db push`. Make sure it is pointed at the local db
 
-### Normal development
+### Running for development
 Just run `npm run dev`
 
-# Best Practices
+# 📚 Best Practices
 Below are some best practices for writing code in this project. 
 I've included this section to explain the reasoning behind my decisions.
 
-## API Schema Validation
-TODO
-
-## Logging
-TODO
-
-## Architecture
-This code base uses Uncle Bob's Clean architecture for the backend, to introduce separation of concern.
+## 🗂 Architecture
+This code base uses Uncle Bob's Clean architecture for the backend, introducing separation of concern.
 It is seperated into API layer, Service layer and Repository layer.
 
-## Error Handling
+```bash
+TODO
+```
+
+## ⚙️ API Schema Validation
+TODO
+
+## 📃 Logging
+TODO
+
+## 🐞 Error Handling
 When you're writing an API code, make sure you wrap your code in try catch blocks. If you don't do this, you'll run into runtime errors that are hard to debug.
 See `handleError` function, which knows what to do when an error arises.
 
