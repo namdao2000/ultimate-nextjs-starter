@@ -1,13 +1,6 @@
 import { Product, Prisma } from '@prisma/client';
 import prisma from '../utils/prisma';
-
-export type ProductCreateInput = {
-  id?: string;
-  userId: string;
-  name: string;
-  description: string;
-  price: number;
-};
+import { HttpError } from '../utils/httpError';
 
 export const ProductRepository = {
   async getManyProducts(): Promise<Product[]> {
@@ -33,7 +26,7 @@ export const ProductRepository = {
     where: Prisma.ProductWhereInput,
     data: Prisma.ProductUncheckedUpdateInput
   ) {
-    await prisma.product.updateMany({
+    const product = await prisma.product.updateMany({
       where: {
         id: where.id,
         userId: where.userId,
@@ -44,14 +37,24 @@ export const ProductRepository = {
         price: data.price,
       },
     });
+
+    if (!product) {
+      throw new HttpError(404, 'Product not found');
+    }
   },
 
+  // Using deleteMany instead of delete because we can do permission checking + deletion in one go.
+  // Same goes with updateOneProduct.
   async deleteOneProduct(where: Prisma.ProductWhereInput) {
-    await prisma.product.deleteMany({
+    const product = await prisma.product.deleteMany({
       where: {
         id: where.id,
         userId: where.userId,
       },
     });
+
+    if (!product) {
+      throw new HttpError(404, 'Product not found');
+    }
   },
 };

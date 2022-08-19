@@ -1,10 +1,11 @@
 import Joi, { ValidationError } from 'joi';
 import { NextApiResponse } from 'next';
+import { logger } from './logger';
+import { HttpError } from './httpError';
 
 export const validate = async (
   schema: Joi.Schema,
-  data: any,
-  res: NextApiResponse
+  data: any
 ): Promise<void> => {
   try {
     await schema.validateAsync(data);
@@ -16,9 +17,6 @@ export const validate = async (
         context,
       };
     });
-    console.log('[JOI ERROR]', formattedErrors);
-    res.status(400).json(formattedErrors);
-
-    throw new Error('Bad request');
+    throw new HttpError(404, 'Bad request', formattedErrors);
   }
 };

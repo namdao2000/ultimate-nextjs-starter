@@ -1,7 +1,4 @@
-import {
-  ProductCreateInput,
-  ProductRepository,
-} from '../repositories/product.repository';
+import { ProductRepository } from '../repositories/product.repository';
 import { Prisma, Product } from '@prisma/client';
 
 export const ProductService = {

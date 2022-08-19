@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
+import { HttpError } from './httpError';
 
 // Authentication Middleware
 export const getUser = async (
@@ -14,9 +15,8 @@ export const getUser = async (
     secret: process.env.SECRET,
   });
 
-  if (!token?.user) {
-    res.status(401).send('User not authenticated');
-    throw new Error('User not authenticated');
+  if (!token) {
+    throw new HttpError(401, 'User not authenticated');
   }
 
   return {
