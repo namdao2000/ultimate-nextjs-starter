@@ -1,12 +1,13 @@
 <div align="center">
-  <h1>🚀 The Ultimate Nextjs Starter (🔋 included™️)</h1>
-  <p>Next.js 12 + TypeScript + Prisma + Chakra UI starter packed with useful development features.</p>
+  <h1>🚀 The Ultimate Next.js Starter (Battery Included™️)</h1>
+  <p>Next.js ^12 + TypeScript + Prisma + Chakra UI starter packed with useful development features.</p>
   <p>I've adopted industries best practices into this template from my professional experience in big tech, startups and YC companies.</p>
   <p>Made by <a href="https://namdao.dev">Nam Dao</a></p>
 </div>
 
-## 💡 Features
+## 🔋 Features
 
+### 💡 Main
 - [x] Authentication using NextAuth with Google Login.
 - [x] PostgreSQL and Prisma ORM.
 - [x] Protected vs public API routes.
@@ -15,10 +16,10 @@
 
 ### 🔎 Observation
 
-- [x] Logging using Pino.
+- [x] Logging using Pino (recommended by Next.js official docs)
 - [ ] Integration with Datadog for monitoring the logs.
 - [x] Error handling.
-- [ ] Analytics.
+- [ ] Analytics using PostHog (YC Backed).
 
 ### 🧑‍💻 Developer Experience
 
@@ -29,8 +30,8 @@
 - [x] Eslint and Prettier for code formatting.
 - [x] lint-staged and pretty-quick for running linting on staged files.
 - [x] Using nvm (node version manager) so everyone in the team is using the same version of node.
-- [ ] Run in development mode vs production mode.
-- [ ] Renovate for keeping the dependencies up to date.
+- [ ] Run in development mode and production mode.
+- [x] [Depful](https://depfu.com/) for keeping the dependencies up to date.
 
 ## 👉 Getting started
 
@@ -72,7 +73,7 @@ Following this patter, the code base is organised into the following layers:
 - Repository Layer
 
 ```bash
- TODO
+ Folder structure TODO
 ```
 
 ## ⚙️ API Schema Validation
@@ -97,7 +98,8 @@ export default async function handle(
     throw new Error('Something went wrong');
     
   } catch (error) {
-    handleError(error, res); // <-- this is the important line. It will capture the error above, log it and send a response to the client.
+    // This will capture the error above, log it and send a response to the client.
+    handleError(error, res); 
   }
 }
 ```
