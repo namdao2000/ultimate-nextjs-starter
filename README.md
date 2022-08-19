@@ -33,9 +33,9 @@
 - [ ] Run in development mode and production mode.
 - [x] [Depful](https://depfu.com/) for keeping the dependencies up to date.
 
-## 👉 Getting started
+# 👉 Quick start
 
-Make sure you have the following `.env` file present
+1. Make sure you have the following `.env` file present.
 
 ```
 DATABASE_URL= Your PostgreSQL url
@@ -43,14 +43,11 @@ GOOGLE_ID= Your Google Credentials API ID for NextAuth
 GOOGLE_SECRET= Your Google Credentials API secret for NextAuth
 SECRET= A secret string used to sign the JWT token for NextAuth
 ```
+2. Spin up docker and start the postgreSQL via docker compose.
 
-### Fresh install
-1. Make sure you have the `.env` file.
-2. Start the postgreSQL via docker compose
-3. Run `npx prisma db push`. Make sure it is pointed at the local db
+3. Run `npx prisma db push`. Make sure it is pointed at the local db.
 
-### Running for development
-Just run `npm run dev`
+4. Run `npm run dev`.
 
 # 📚 Best Practices
 Below are some of the best practices used when creating this project. 
