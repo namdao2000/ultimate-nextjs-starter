@@ -1,10 +1,11 @@
-# 🚀 The Ultimate Nextjs Starter Template
+<div align="center">
+  <h1>🚀 The Ultimate Nextjs Starter (🔋 included™️)</h1>
+  <p>Next.js 12 + TypeScript + Prisma + Chakra UI starter packed with useful development features.</p>
+  <p>I've adopted industries best practices into this template from my professional experience in big tech, startups and YC companies.</p>
+  <p>Made by <a href="https://namdao.dev">Nam Dao</a></p>
+</div>
 
-🔋 Battery included™️.
-This an opinionated starter template for a production grade NextJS project.
-I've adopted industries best practices into this template from my professional experience in big tech, startups and YC companies.
-
-### 💡 Main features
+## 💡 Features
 
 - [x] Authentication using NextAuth with Google Login.
 - [x] PostgreSQL and Prisma ORM.
