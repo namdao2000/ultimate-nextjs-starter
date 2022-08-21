@@ -66,7 +66,7 @@ But what is Clean Architecture?
 
 Following this patter, the code base is organised into the following layers:
 
-### 1. API Layer
+### 1. API Layer (`src/pages/api/*`)
 This layer is responsible for receiving requests from the client and sending responses back to the client.
 Some of its responsibilities are:
 - Error handling
@@ -76,10 +76,10 @@ Some of its responsibilities are:
 
 It should not need to know any business logic or data access logic.
 
-### 2. Service Layer
+### 2. Service Layer (`src/lib/services/*`)
 This layer is responsible for business logic. You will do most of the heavy lifting here.
 
-### 3. Repository Layer
+### 3. Repository Layer (`src/lib/repositories/*`)
 This layer is responsible for data access logic.
 
 ### The dependency between the layers is as follows:
@@ -90,11 +90,11 @@ This layer is responsible for data access logic.
 ```
 
 ## ⚙️ API Schema Validation
-It is important to validate the incoming request to the API before running ANY business logic. 
+It is important to sanitize/validate the incoming requests to the API before running ANY business logic. 
 There are numbers of libraries out there that can do JSON validation, but I've found JOI to 
 be the easiest to use.
 
-For example, if you're expecting a request to the API to have name, price and description fields,
+For example, if you're expecting a request to the API that has `name`, `price` and `description` fields,
 simply define a schema:
 
 ```ts
