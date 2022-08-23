@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Joi from 'joi';
-import { ProductService } from '../../../lib/services/product/productService';
 import { getUser } from '../../../lib/utils/getUser';
 import { validate } from '../../../lib/utils/validate';
 import { handleError } from '../../../lib/utils/handleError';
@@ -20,13 +19,14 @@ export default async function handle(
         const schema = Joi.object({
           name: Joi.string().required(),
           price: Joi.string().required(),
-          description: Joi.boolean().required(),
+          description: Joi.string().required(),
         });
 
         await validate(schema, body);
         const result = await Services.product.createOneProduct({
-          userId: user.id,
           ...body,
+          userId: user.id,
+          price: parseInt(body.price),
         });
         res.json(result);
         break;

@@ -1,16 +1,44 @@
 import type { NextPage } from 'next';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home: NextPage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/products').then((res) => {
+      setProducts(res.data);
+    });
+  }, []);
+
+  const createProduct = async () => {
+    await axios.post('/api/product', {
+      name: 'New Product',
+      price: '0.00',
+      description: 'New Product',
+    });
+  };
+
   return (
     <div>
       <Header />
       <main>
         <Flex align="center" justify="center" paddingX={['10px', '20px']}>
-          <Flex width={1150} maxWidth={1150} bg="vercel.background">
+          <Flex width={1150} maxWidth={1150} bg="grey">
             Hello World
+            {products.map((product, index) => {
+              return <div key={index}>{product.name}</div>;
+            })}
+            <Button
+              onClick={async () => {
+                await createProduct();
+              }}
+            >
+              Create one
+            </Button>
           </Flex>
         </Flex>
       </main>
