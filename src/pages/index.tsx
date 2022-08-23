@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { Button, Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { requests } from '../lib/utils/requests';
 
 const Home: NextPage = () => {
   const [products, setProducts] = useState([]);
@@ -15,10 +16,9 @@ const Home: NextPage = () => {
   }, []);
 
   const createProduct = async () => {
-    await axios.post('/api/product', {
+    await requests.post('/api/products', {
       name: 'New Product',
-      price: '0.00',
-      description: 'New Product',
+      description: 'New Product Description',
     });
   };
 
