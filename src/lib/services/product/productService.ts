@@ -23,24 +23,3 @@ export class ProductService {
     await this.productRepository.deleteOneProduct(where);
   }
 }
-
-// export const ProductService = {
-//   async getManyProducts(): Promise<Product[]> {
-//     return await ProductRepository.getManyProducts();
-//   },
-//
-//   async createOneProduct(data: Prisma.ProductUncheckedCreateInput) {
-//     await ProductRepository.createOneProduct(data);
-//   },
-//
-//   async updateOneProduct(
-//     where: Prisma.ProductWhereInput,
-//     data: Prisma.ProductUncheckedUpdateInput
-//   ) {
-//     await ProductRepository.updateOneProduct(where, data);
-//   },
-//
-//   async deleteOneProduct(where: Prisma.ProductWhereInput): Promise<void> {
-//     await ProductRepository.deleteOneProduct(where);
-//   },
-// };
