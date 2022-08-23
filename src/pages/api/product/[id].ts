@@ -1,9 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Joi from 'joi';
-import { ProductService } from '../../../lib/services/product.service';
+import { ProductService } from '../../../lib/services/product/productService';
 import { getUser } from '../../../lib/utils/getUser';
 import { validate } from '../../../lib/utils/validate';
 import { handleError } from '../../../lib/utils/handleError';
+import { ProductRepository } from '../../../lib/repositories/product/productRepository';
+
+const productRepository = new ProductRepository(prisma);
+const productService = new ProductService(productRepository);
 
 export default async function handle(
   req: NextApiRequest,
@@ -28,7 +32,7 @@ export default async function handle(
 
         await validate(schema, body);
 
-        const result = await ProductService.updateOneProduct(
+        const result = await productService.updateOneProduct(
           { id: id as string, userId: user.id },
           body
         );
@@ -36,7 +40,7 @@ export default async function handle(
         break;
       }
       case 'DELETE': {
-        await ProductService.deleteOneProduct({
+        await productService.deleteOneProduct({
           id: id as string,
           userId: user.id,
         });

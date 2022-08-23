@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Joi from 'joi';
-import { ProductService } from '../../../lib/services/product.service';
+import { ProductService } from '../../../lib/services/product/productService';
 import { getUser } from '../../../lib/utils/getUser';
 import { validate } from '../../../lib/utils/validate';
 import { handleError } from '../../../lib/utils/handleError';
