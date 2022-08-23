@@ -4,9 +4,9 @@ import { Prisma, Product } from '@prisma/client';
 export class ProductService {
   constructor(private productRepository: ProductRepository) {}
 
-  getManyProducts = async (): Promise<Product[]> => {
+  async getManyProducts(): Promise<Product[]> {
     return await this.productRepository.getManyProducts();
-  };
+  }
 
   async createOneProduct(data: Prisma.ProductUncheckedCreateInput) {
     await this.productRepository.createOneProduct(data);
