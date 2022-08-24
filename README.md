@@ -347,7 +347,7 @@ We use the axios library for these requests. Make use of my `requests` wrapper f
 ## **🧹 Codebase hygene**
 As your team scale, it is important to have a code style consistency.
 
-- Prettier & Eslint is used for keeping the code format consistent
+- Prettier & Eslint is used for keeping the code format consistent.
 - Husky is used for running eslint & prettier tasks at pre-commit.
 - Make sure that files and variables are `camelCased`.
 
