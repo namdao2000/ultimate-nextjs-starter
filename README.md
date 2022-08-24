@@ -12,8 +12,8 @@
 - [x] PostgreSQL and Prisma ORM.
 - [x] Protected vs public API routes.
 - [x] API schema validation using JOI validator.
-- [ ] Data fetching using SWR.
-- [ ] Testing using jest and jest-mock-extended
+- [x] Data fetching using SWR.
+- [x] Testing using jest and jest-mock-extended
 
 ### 🔎 Observation
 
@@ -22,16 +22,15 @@
 - [x] Error handling.
 - [ ] Analytics using PostHog (YC Backed).
 
-### 🧑‍💻 Developer Experience
+### 🧑‍💻 Developer experience
 
 - [x] Typescript
 - [x] Using Uncle Bob's Clean Architecture for backend codebase.
 - [x] Create React components faster with component library using Chakra UI.
-- [ ] Docker compose for running the app locally.
+- [x] Docker compose for running the app locally.
 - [x] Eslint and Prettier for code formatting.
 - [x] lint-staged and pretty-quick for running linting on staged files.
 - [x] Using nvm (node version manager) so everyone in the team is using the same version of node.
-- [ ] Run in development mode and production mode.
 - [x] [Depful](https://depfu.com/) for keeping the dependencies up to date.
 
 # 👉 Quick start
@@ -50,7 +49,7 @@ SECRET= A secret string used to sign the JWT token for NextAuth
 
 4. Run `npm run dev`.
 
-# 📚 Best Practices
+# 📚 Best practices
 Below are some of the best practices used when creating this project. 
 I've included this section to explain the reasoning behind my decisions.
 
@@ -66,7 +65,7 @@ But what is Clean Architecture?
 
 Following this patter, the code base is organised into the following layers:
 
-### 1. API Layer (`src/pages/api/*`)
+### 1. API layer (`src/pages/api/*`)
 This layer is responsible for receiving requests from the client and sending responses back to the client.
 Some of its responsibilities are:
 - Error handling
@@ -76,10 +75,10 @@ Some of its responsibilities are:
 
 It should not need to know any business logic or data access logic.
 
-### 2. Service Layer (`src/lib/services/*`)
+### 2. Service layer (`src/lib/services/*`)
 This layer is responsible for business logic. You will do most of the heavy lifting here.
 
-### 3. Repository Layer (`src/lib/repositories/*`)
+### 3. Repository layer (`src/lib/repositories/*`)
 This layer is responsible for data access logic.
 
 ### The dependency between the layers is as follows:
@@ -89,7 +88,18 @@ This layer is responsible for data access logic.
  Folder structure TODO
 ```
 
-## ⚙️ API Schema Validation
+### Manual Dependency Injection pattern with `buildServices.ts` file.
+Service layer and Repository layer is written in classes, so that we can mock and test them later on. 
+
+As a result, we need to manually instantiate them in the `buildServices.ts` file and use them as `Services.[service name]` in the API layer.
+
+Note: Yes, I do agree that this is a little bit manual and messy. There are libraries out there to help us do DI in TS/Nodejs but its not nice. 
+
+The decision to adopt the DI pattern was not an easy one, but I believe that writing testable code is crucial to building a reliable application, so here we are.
+## 🔐 Authentication 
+TODO
+
+## ⚙️ API schema validation
 It is important to sanitize/validate the incoming requests to the API before running ANY business logic. 
 There are numbers of libraries out there that can do JSON validation, but I've found JOI to 
 be the easiest to use.
@@ -136,7 +146,7 @@ When you're logging something, you can also pass in extra data to the logger:
 logger.info({ name: "Dyson hair dryer", price: 100 }, 'Purchased a product');
 ```
 
-## 🐞 Error Handling
+## 🐞 Error handling
 When you're writing anything, it is important to wrap your code in try catch blocks. 
 Especially for APIs, as if you don't do this, you'll run into runtime errors that are hard to debug.
 See my example `handleError` function, which returns an appropriate message to the client when an error arises.
@@ -206,8 +216,94 @@ which caused our whole database to become unresponsive. We ended up writing raw 
 However, even though edge cases like this exist, I would still recommend using the Prisma because the other 98% with the added productivity 
 justifies it.
 
-## ✅ Backend testing with jest and jest-mock-extend.
-TODO
+## ✅ Testing
+Testing is always a controversial topic, especially in the startup world. My experience has taught me that when you're hacking together a project for an MVP or building a PoC, don't even think about it. Why spend all the effort writing test cases (which btw takes a long time) when the code could be torn down at any time. However, if your intension is to write code that **won't be torn down**, please write tests!
+
+### Why are repository layer and service layer all classes!?
+I've adopoted dependnecy injection for our backend code. Its basiclaly a design pattern where an object receives other objects that it depends on, usually through the constructor. This will allow us to mock dependencies easier later on.
+
+### How to write unit testing using Jest & Jest Mock Extended
+For example, if you have a file called `productService.ts`, a test file should be called `productService.test.ts`.
+
+Let's say you want to test that the `ProductService.deleteOneProduct()` method actually called the `ProductRepository.deleteOneProduct()` in `ProductService` class.
+
+`productService.ts`
+```ts
+export class ProductService {
+  constructor(private productRepository: ProductRepository) {}
+
+  async getManyProducts(): Promise<Product[]> {
+    ...
+  }
+
+  async deleteOneProduct(where: Prisma.ProductWhereInput): Promise<void> {
+    ...
+  }
+}
+```
+
+Your test file will look like this `productService.test.ts`:
+```ts
+describe('ProductService', () => {
+  const mockProductRepository = mock<ProductRepository>();
+  let productService: ProductService;
+
+  beforeEach(() => {
+    productService = new ProductService(mockProductRepository);
+  });
+
+  describe('deleteOneProduct', () => {
+    test('should call ProductRepository.deleteOneProduct', async () => {
+      const where = { id: '1', userId: 'nam' };
+      await productService.deleteOneProduct(where);
+      expect(mockProductRepository.deleteOneProduct).toHaveBeenCalledWith(
+        where
+      );
+    });
+  });
+});
+```
+
+Where:
+- The first `describe()` specifies the class name.
+- we define all the dependnecies we need to mock using `mock` from `jest-mock-extended`.
+- Do any pre testing logic in `beforeEach()`.
+- The second `describe()` specifies the method name.
+- Test name should follow the format `should (logic)`
+
+## 🏎 CRUD requests
+Sending request to the server from the client is quite simple.
+
+### `GET` requests
+[`SWR`](https://www.npmjs.com/package/swr) is a React Hooks library for data fetching, that we're using in this project (recommended by the official Next.js docs) This is because `SWR` library allows us to re-validate the data / do automatic polling. 
+
+Example of calling `api/products` endpoint in `index.tsx` with 1s refresh interval.
+```ts
+const Home: NextPage = () => {
+  const { data } = useSWR('/api/products', fetcher, {
+    refreshInterval: 1000, // default is no polling.
+  });
+
+  ...
+
+  return (
+    <div>
+      ...
+    </div>
+  );
+};
+```
+
+### `POST`, `PUT`, `PATCH`, `DELETE` requests
+We use the axios library for these requests. Make use of my `requests` wrapper function I wrote inside `lib/utils/requests.ts`, as you can decide what to do when an error arises, on a global level. I recommend displaying an error toast there.
+
+## 🧹 Codebase hygene
+As your team scale, it is important to have a consitent way of writing the code.
+
+- Prettier & Eslint is used for keeping the code format consistent
+- Husky is used for running eslint & prettier tasks at pre-commit.
+- Make sure that files and variables are `camelCased`.
+
 
 # ⭐️ Contribution
 Always looking for feedbacks and contributors! Please open an issue or a PR if you have any suggestions 😁
