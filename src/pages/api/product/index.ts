@@ -10,6 +10,7 @@ export default async function handle(
   res: NextApiResponse
 ) {
   try {
+    console.log('req.body', req.body);
     const { method, body } = req;
 
     const user = await getUser(req, res);
@@ -18,7 +19,7 @@ export default async function handle(
       case 'POST': {
         const schema = Joi.object({
           name: Joi.string().required(),
-          price: Joi.string().required(),
+          price: Joi.number().required(),
           description: Joi.string().required(),
         });
 
@@ -33,6 +34,7 @@ export default async function handle(
       }
     }
   } catch (error) {
+    console.log('got here?');
     handleError(error, res);
   }
 }

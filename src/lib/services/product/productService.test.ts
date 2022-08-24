@@ -1,5 +1,3 @@
-// Write unit test for the product service using jest
-
 import { ProductService } from './productService';
 import { ProductRepository } from '../../repositories/product/productRepository';
 import { mock } from 'jest-mock-extended';
