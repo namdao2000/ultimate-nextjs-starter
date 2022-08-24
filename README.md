@@ -117,6 +117,25 @@ Use the `getToken` method from `NextAuth` to verify the validity of the user's `
 
 If the token is outdated or is tampered with, it will return null.
 
+### **Permission / Authorization**
+If a user tries to do a privileged action, make sure that they have enough permission to do it. 
+
+In my example here, a user can only delete a product if it BELONGS to them. So I do a check with prisma to make sure that its the case.
+
+```ts
+  async updateOneProduct(
+  ...
+  ) {
+    prisma.product.updateMany({
+      where: {
+        id: where.id,
+        userId: where.userId, // <-- Check to make sure that the user is authorized to make such action.
+      },
+      ...
+    });
+  }
+```
+
 ### **Signin / Signout**
 `NextAuth` provides us with 2 useful functions for the frontend.
 
