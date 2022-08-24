@@ -17,6 +17,6 @@ export const validate = async (
         context,
       };
     });
-    throw new HttpError(404, 'Bad request', formattedErrors);
+    throw new HttpError(404, 'Bad Request', formattedErrors);
   }
 };

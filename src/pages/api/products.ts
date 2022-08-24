@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ProductService } from '../../lib/services/product.service';
 import { getUser } from '../../lib/utils/getUser';
 import { handleError } from '../../lib/utils/handleError';
+import { Services } from '../../lib/buildServices';
 
 export default async function handle(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function handle(
 
     switch (method) {
       case 'GET': {
-        const result = await ProductService.getManyProducts();
+        const result = await Services.product.getManyProducts();
         res.json(result);
         break;
       }

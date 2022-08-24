@@ -1,18 +1,19 @@
-import { Product, Prisma } from '@prisma/client';
-import prisma from '../utils/prisma';
-import { HttpError } from '../utils/httpError';
+import { Product, Prisma, PrismaClient } from '@prisma/client';
+import { HttpError } from '../../utils/httpError';
 
-export const ProductRepository = {
+export class ProductRepository {
+  constructor(private prisma: PrismaClient) {}
+
   async getManyProducts(): Promise<Product[]> {
-    return await prisma.product.findMany({
+    return await this.prisma.product.findMany({
       take: 100,
     });
-  },
+  }
 
   async createOneProduct(
     data: Prisma.ProductUncheckedCreateInput
   ): Promise<Product> {
-    return await prisma.product.create({
+    return await this.prisma.product.create({
       data: {
         userId: data.userId,
         name: data.name,
@@ -20,13 +21,13 @@ export const ProductRepository = {
         price: data.price,
       },
     });
-  },
+  }
 
   async updateOneProduct(
     where: Prisma.ProductWhereInput,
     data: Prisma.ProductUncheckedUpdateInput
   ) {
-    const product = await prisma.product.updateMany({
+    const result = await this.prisma.product.updateMany({
       where: {
         id: where.id,
         userId: where.userId,
@@ -38,23 +39,23 @@ export const ProductRepository = {
       },
     });
 
-    if (!product) {
+    if (!result.count) {
       throw new HttpError(404, 'Product not found');
     }
-  },
+  }
 
   // Using deleteMany instead of delete because we can do permission checking + deletion in one go.
   // Same goes with updateOneProduct.
-  async deleteOneProduct(where: Prisma.ProductWhereInput) {
-    const product = await prisma.product.deleteMany({
+  public async deleteOneProduct(where: Prisma.ProductWhereInput) {
+    const result = await this.prisma.product.deleteMany({
       where: {
         id: where.id,
         userId: where.userId,
       },
     });
 
-    if (!product) {
+    if (!result.count) {
       throw new HttpError(404, 'Product not found');
     }
-  },
-};
+  }
+}
