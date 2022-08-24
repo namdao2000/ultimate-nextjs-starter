@@ -7,19 +7,20 @@
 
 # **👉 Quick start**
 
-1. Make sure you have the following `.env` file present.
+1. Please get the Google OAuth 2.0 Credentials by following this https://next-auth.js.org/providers/google
 
-```
-DATABASE_URL= Your PostgreSQL url
-GOOGLE_ID= Your Google Credentials API ID for NextAuth
-GOOGLE_SECRET= Your Google Credentials API secret for NextAuth
-SECRET= A secret string used to sign the JWT token for NextAuth
-```
-2. Spin up docker and start the postgreSQL via docker compose.
+2. Make sure you have the following `.env` file present.
+    ```
+    DATABASE_URL= Your PostgreSQL url
+    GOOGLE_ID= Your Google Credentials API ID for NextAuth
+    GOOGLE_SECRET= Your Google Credentials API secret for NextAuth
+    SECRET= A secret string used to sign the JWT token for NextAuth
+    ```
+3. Spin up docker and start the postgreSQL via docker compose.
 
-3. Run `npx prisma db push`. Make sure it is pointed at the local db.
+4. Run `npx prisma db push`. Make sure it is pointed at the local db.
 
-4. Run `npm run dev`.
+5. Run `npm run dev`.
 
 ## **🔋 Features**
 
@@ -98,6 +99,8 @@ The decision to adopt the DI pattern was not an easy one, but I believe that wri
 This is hands down one of the harder features to implement, and it could take up to a week of dev time to get it done.
 
 Luckily, Next.js has provided us with `NextAuth` library, which allows us to do all of the authentication out of the box.
+### **Login with google**
+Please get the Google OAuth 2.0 Credentials by following this https://next-auth.js.org/providers/google
 
 ### **Where are the user data stored?**
 All the user data is stored in the database (see `schema.prisma` file). Passwords are salted and hashed automatically.
