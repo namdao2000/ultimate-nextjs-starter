@@ -1,5 +1,6 @@
 <div align="center">
   <h1><b>🚀 The Ultimate Next.js Starter Pack</b></h1>
+    <img src='https://dz2cdn1.dzone.com/storage/article-thumb/11707156-thumb.jpg' height="350" width="auto">
   <p>Next.js ^12 + TypeScript + Prisma + Chakra UI starter packed with useful development features.</p>
   <p>I've adopted industries best practices into this template from my professional experience working in big tech, startups and YC companies.</p>
   <p>Made by <a href="https://namdao.dev">Nam Dao</a></p>
