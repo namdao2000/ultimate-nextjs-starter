@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           <Flex width={1150} maxWidth={1150} bg="grey">
             Hello World
             {products &&
-              products.map((product: Product, index) => {
+              products.map((product: Product, index: number) => {
                 return <div key={index}>{product.name}</div>;
               })}
           </Flex>
