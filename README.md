@@ -8,7 +8,7 @@
 
 # **👉 Quick start**
 
-1. Please get the Google OAuth 2.0 Credentials by following this https://next-auth.js.org/providers/google
+1. Please set up the [Google OAuth 2.0 API & Credentials by following this tutorial](https://next-auth.js.org/providers/google)
 
 2. Make sure you have the following `.env` file present.
     ```
