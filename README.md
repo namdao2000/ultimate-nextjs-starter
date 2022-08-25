@@ -343,7 +343,7 @@ Where:
 - The second `describe()` specifies the method name.
 - Test name should follow the format `'should (logic)'`
 
-## **CI/CD with GitHub Actions and Vercel**
+## **⚙️ CI/CD with GitHub Actions and Vercel**
 We're using GitHub Actions to run `npm run build` and `npm test` on commits and PRs to the main branch.
 
 Once a new commit is pushed to the main branch, vercel detects that and rebuilds the application for us.
