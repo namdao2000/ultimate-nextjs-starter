@@ -15,13 +15,13 @@ export default NextAuth({
   secret: process.env.SECRET,
   session: { strategy: 'jwt' as any },
   callbacks: {
-    async session({ session, user }: { session: any; user: Partial<User> }) {
+    session({ session, user }: { session: any; user: Partial<User> }) {
       if (user) {
         session.user = user;
       }
       return session;
     },
-    async jwt({ token, user }: { token: any; user?: Partial<User> }) {
+    jwt({ token }: { token: any }) {
       return token;
     },
   },
