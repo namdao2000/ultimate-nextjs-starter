@@ -45,6 +45,7 @@
 ### **🧑‍💻 Developer experience**
 
 - [x] Typescript
+- [x] Automatic build & testing with GitHub Actions
 - [x] Using Uncle Bob's Clean Architecture for backend codebase.
 - [x] Create React components faster with component library using Chakra UI.
 - [x] Docker compose for running the app locally.
@@ -341,6 +342,11 @@ Where:
 - Do any pre testing logic in `beforeEach()`.
 - The second `describe()` specifies the method name.
 - Test name should follow the format `'should (logic)'`
+
+## **CI/CD with GitHub Actions and Vercel**
+We're using GitHub Actions to run `npm run build` and `npm test` on commits and PRs to the main branch.
+
+Once a new commit is pushed to the main branch, vercel detects that and rebuilds the application for us.
 
 ## **🏎 CRUD requests**
 Sending request to the server from the client is quite simple.
