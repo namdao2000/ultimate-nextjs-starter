@@ -23,6 +23,10 @@
 
 5. Run `npm run dev`.
 
+6. Deploy to vercel for free 😎
+
+    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnamdao2000%2Fultimate-nextjs-starter)
+
 ## **🔋 Features**
 
 ### **💡 Main**
