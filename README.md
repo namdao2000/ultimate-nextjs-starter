@@ -23,7 +23,7 @@
 
 5. Run `npm run dev`.
 
-6. Deploy to vercel for free 😎
+6. Deploy to Vercel for free 😎
 
     [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnamdao2000%2Fultimate-nextjs-starter)
 
@@ -374,7 +374,7 @@ const Home: NextPage = () => {
 ### **`POST`, `PUT`, `PATCH`, `DELETE` requests**
 We use the axios library for these requests. Make use of my `requests` wrapper function I wrote inside `lib/utils/requests.ts`, as you can decide what to do when an error arises, on a global level. I recommend displaying an error toast there.
 
-## **🧹 Codebase hygene**
+## **🧹 Codebase hygiene**
 As your team scale, it is important to have a code style consistency.
 
 - Prettier & Eslint is used for keeping the code format consistent.
