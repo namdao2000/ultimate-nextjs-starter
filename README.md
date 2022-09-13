@@ -126,7 +126,7 @@ If the token is outdated or is tampered with, it will return null.
 ### **Permission / Authorization**
 If a user tries to do a privileged action, make sure that they have enough permission to do it. 
 
-In my example here, a user can only delete a product if it BELONGS to them. So I do a check with prisma to make sure that its the case.
+In my example here, a user can only update a product if it BELONGS to them. So I do a check with prisma to make sure that its the case.
 
 ```ts
   async updateOneProduct(
