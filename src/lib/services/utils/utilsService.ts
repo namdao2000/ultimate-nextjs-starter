@@ -23,4 +23,21 @@ export class UtilsService {
 
     return differenceMs / millisecondsPerUnit[unit];
   }
+
+  static timeAgo(timestamp: Date): string {
+    const now = new Date();
+    let difference = (now.getTime() - timestamp.getTime()) / 1000; // Difference in seconds
+
+    if (difference < 60) {
+      return `${Math.floor(difference)} second${difference === 1 ? '' : 's'}`;
+    } else if (difference < 3600) { // Less than 1 hour
+      difference /= 60; // Convert to minutes
+      return `${Math.floor(difference)} min${Math.floor(difference) === 1 ? '' : 's'}`;
+    } else if (difference < 86400) { // Less than 1 day
+      difference /= 3600; // Convert to hours
+      return `${Math.floor(difference)} hour${Math.floor(difference) === 1 ? '' : 's'}`;
+    }
+    difference /= 86400; // Convert to days
+    return `${Math.floor(difference)} day${Math.floor(difference) === 1 ? '' : 's'}`;
+  }
 }
