@@ -23,4 +23,29 @@ export class UtilsService {
 
     return differenceMs / millisecondsPerUnit[unit];
   }
+
+  static timeAgo(timestamp: Date): string {
+    const currentTime = new Date();
+    const millisecondsDiff = currentTime.getTime() - timestamp.getTime();
+    const millisecondsPerUnit = {
+      'second': 1000,
+      'minute': 60000,
+      'hour': 3600000,
+      'day': 86400000,
+    };
+
+    if (millisecondsDiff < 0) {
+      return 'just now';
+    }
+
+    for (const [unit, milliseconds] of Object.entries(millisecondsPerUnit).reverse()) {
+      const diff = millisecondsDiff / milliseconds;
+      if (diff >= 1) {
+        const timeUnit = diff >= 2 ? `${unit}s` : unit;
+        return `${Math.floor(diff)} ${timeUnit.replace('second', 'second').replace('minute', 'min').replace('hour', 'hour').replace('day', 'day')}`;
+      }
+    }
+
+    return 'just now';
+  }
 }
